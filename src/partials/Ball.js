@@ -8,6 +8,7 @@ export default class Ball {
     this.boardWidth = boardWidth;
     this.boardHeight = boardHeight;
     this.direction = 1;
+    this.ping = new Audio('public/sounds/pong-01.wav');
     this.reset()
   }
 
@@ -29,6 +30,15 @@ export default class Ball {
     const hitTop = this.y - this.radius <= 0;
     const hitBottom = this.y + this.radius >= this.boardHeight;
 
+    // if(hitLeft) {
+    //   this.goal(player2);
+    //   this.vx = -this.vx;
+    // } else if (hitRight) {
+    //   this.goal(player1);
+    // } else if (hitTop || hitBottom) {
+    //   this.vy = -this.vy
+    // }
+
     if (hitLeft || hitRight) {
       this.vx = -this.vx;
     } else if (hitTop || hitBottom) {
@@ -47,6 +57,7 @@ export default class Ball {
         this.y <= bottomY
       ) {
         this.vx = -this.vx;
+        this.ping.play();
       }
     } else {
       let paddle = player1.coordinates(player1.x, player1.y, player1.width, player1.height);
@@ -57,6 +68,7 @@ export default class Ball {
         this.y <= bottomY
       ) {
         this.vx = -this.vx;
+        this.ping.play();
       }
     }
   }
@@ -73,9 +85,16 @@ export default class Ball {
     this.wallCollision();
     this.paddleCollision(player1, player2);
 
-    //detect score
-    //if the right wall was touched? increment player 1 score (and give advantage)
-    //if the left wall was touched? increment player 2 score  (and give advantage)
+    const playerOneGoal = this.x + this.radius >= this.boardWidth;
+    const playerTwoGoal =  this.x - this.radius <= 0;
+
+    if (playerOneGoal) {
+      this.goal(player1);
+      this.direction = 1;
+    }else if (playerTwoGoal){
+       this.goal(player2);
+       this.direction = -1; 
+    }
 
     let circle = document.createElementNS(SVG_NS, 'circle');
     circle.setAttributeNS(null, 'r', '8');
