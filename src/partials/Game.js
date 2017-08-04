@@ -1,6 +1,7 @@
 import { SVG_NS, KEYS } from '../settings';
 import Board from './Board';
 import Paddle from './Paddle';
+import Ball from './Circle';
 
 export default class Game {
 
@@ -47,6 +48,7 @@ export default class Game {
 		this.board.render(svg); //variable of svg must be the same as "let svg"
 		this.player1.render(svg); 
 		this.player2.render(svg);
+		// this.ball.render(svg);
 	}
 
 }

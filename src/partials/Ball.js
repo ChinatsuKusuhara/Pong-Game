@@ -9,8 +9,12 @@ export default class Ball {
   }
 
   render(svg) {
-    
+    let circle = document.createElementNS(SVG_NG, 'circle');
+    circle.setAttributeNS(null, 'radius', this.radius);
+    circle.setAttributeNS(null, 'width', this.width);
+    circle.setAttributeNS(null, 'height', this.height);
+    circle.setAttributeNS(null, 'fill', 'purple');
+    svg.appendChild(circle);
   }
- // <circle cx="256" cy="128" r="8" fill="white" />
 
 }
