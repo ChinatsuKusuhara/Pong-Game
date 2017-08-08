@@ -8,7 +8,7 @@ export default class Ball {
     this.boardWidth = boardWidth;
     this.boardHeight = boardHeight;
     this.direction = 1;
-    this.ping = new Audio('public/sounds/pong-01.wav');
+    this.ping = new Audio('public/sounds/BOING.WAV');
     this.reset()
   }
 
@@ -29,15 +29,6 @@ export default class Ball {
     const hitRight = this.x + this.radius >= this.boardWidth;
     const hitTop = this.y - this.radius <= 0;
     const hitBottom = this.y + this.radius >= this.boardHeight;
-
-    // if(hitLeft) {
-    //   this.goal(player2);
-    //   this.vx = -this.vx;
-    // } else if (hitRight) {
-    //   this.goal(player1);
-    // } else if (hitTop || hitBottom) {
-    //   this.vy = -this.vy
-    // }
 
     if (hitLeft || hitRight) {
       this.vx = -this.vx;
@@ -76,6 +67,10 @@ export default class Ball {
   goal(player) {
     player.score++; //increment winning player score 
     this.reset();
+    if (player.score === 5) {
+      this.vx = 0;
+      this.vy = 0;
+    }
   }
 
   render(svg, player1, player2) {

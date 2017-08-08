@@ -3,6 +3,7 @@ import Board from './Board';
 import Paddle from './Paddle';
 import Ball from './Ball';
 import Score from './Score';
+import Message from './Message';
 
 export default class Game {
 	constructor(element, width, height) {
@@ -41,6 +42,7 @@ export default class Game {
 
 		this.score1 = new Score(this.width / 2 - 55, 30, 30);
 		this.score2 = new Score(this.width / 2 + 30, 30, 30);
+		this.winner = new Message(80, 170, 40);
 
 		document.addEventListener('keydown', event => {
 			switch (event.key) {
@@ -71,5 +73,13 @@ export default class Game {
 		this.ball.render(svg, this.player1, this.player2);
 		this.score1.render(svg, this.player1.score);
 		this.score2.render(svg, this.player2.score);
+
+		const player1Msg = 'Player 1 wins!';
+		const player2Msg = 'Player 2 wins!';
+		if (this.player1.score === 5) {
+			this.winner.render(svg, player1Msg);
+		} else if (this.player2.score === 5) {
+			this.winner.render(svg, player2Msg);
+		}
 	}
 }
