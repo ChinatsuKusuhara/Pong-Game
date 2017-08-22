@@ -34,7 +34,7 @@ The game will stop when one of the players reaches 5 points.
 
 ## Authors
 
-Mandi Wise - RED Instructor
+Chinatsu Kusuhara 
 
 ## Acknowledgements
 
