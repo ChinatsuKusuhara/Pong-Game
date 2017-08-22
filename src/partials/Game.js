@@ -77,9 +77,9 @@ export default class Game {
 		const player1Msg = 'Player 1 wins!';
 		const player2Msg = 'Player 2 wins!';
 		if (this.player1.score === 5) {
-			this.winner.render(svg, player1Msg);
+			this.winner.render('y',svg, player1Msg);
 		} else if (this.player2.score === 5) {
-			this.winner.render(svg, player2Msg);
+			this.winner.render('x',svg, player2Msg);
 		}
 	}
 }
